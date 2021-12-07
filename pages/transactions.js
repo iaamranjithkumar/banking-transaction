@@ -4,6 +4,9 @@ import CsvDownload from 'react-json-to-csv'
 import "react-table-6/react-table.css";
 Transactions.getInitialProps = async (ctx) => {
     if(ctx&&ctx.req&&ctx.req.headers){
+        if(ctx.req.headers.cookie){
+            let sessionId= getCookie('sarb_sessid',ctx.req.headers.cookie)
+            if(sessionId && sessionId!=''){
         var currentDate = new Date();
             let body ={
                 'session_id': getCookie('sarb_sessid',ctx.req.headers.cookie),
@@ -17,7 +20,26 @@ Transactions.getInitialProps = async (ctx) => {
             }
         return await GetTransactionDetails(body);
      
+    }else{
+        ctx.res&& ctx.res.writeHead('302',{
+            Location: '/'
+          })
+          ctx.res.end();
     }
+}
+    else{
+        ctx.res&& ctx.res.writeHead('302',{
+            Location: '/'
+          })
+          ctx.res.end();
+    }
+}
+else{
+    ctx.res&& ctx.res.writeHead('302',{
+        Location: '/'
+      })
+      ctx.res.end();
+  }
 }
 
     async function GetTransactionDetails(body){
@@ -37,14 +59,13 @@ Transactions.getInitialProps = async (ctx) => {
         }
         return {transactions: data.data }
       }
-export default function Transactions({transactions}) {
-   
+export default function Transactions({transactions, error}) {
     var today = new Date().toISOString().split('T')[0]
     const [currentDate, setDate] = useState(today);
     const [allTransactions,setTransactions] = useState(transactions)
     const [selectedOperation,setOperation] = useState(null)
     const [status,setStatus] = useState(null)
-    const [transationDetails, setTransationDetails] = useState(transactions.detailedReport)
+    const [transationDetails, setTransationDetails] = useState(transactions && transactions.detailedReport)
     const columns = []
    const state = {setTransactions,setTransationDetails,setDate, setStatus, setOperation,status,selectedOperation,status,allTransactions,transationDetails}
     if(transactions.detailedReport && transactions.detailedReport)
@@ -79,19 +100,22 @@ export default function Transactions({transactions}) {
                     <h2>Transactions Details</h2>
                     <div className="filters">
                     <select onChange={(e)=>{onOperationChange(e.target.value, state)}}>
-                         <option value="" disabled selected hidden>Select Operation</option>
+                         <option value="" disabled selected={selectedOperation==null} hidden={selectedOperation}>Select Operation</option>
                             {allTransactions.operations && allTransactions.operations.map(x=>{
                                 return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
                             })}
                     </select>
                     <select onChange={(e)=>{onStatusChange(e.target.value, state)}}>
-                         <option value="" disabled selected hidden>Select Status</option>
+                         <option value="" disabled selected={status==null} hidden={status}>Select Status</option>
                             {allTransactions.status && allTransactions.status.map(x=>{
                                 return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
                             })}
                     </select>
                     <a href="#"><CsvDownload data={transationDetails}>Click here to Download</CsvDownload></a>
                     </div>
+                    <div className="result">
+                        Result: <strong>{transationDetails.length}</strong> Transactions
+                        </div>
                     <ReactTable
                         data={transationDetails}
                         columns={columns} 
@@ -127,6 +151,7 @@ export default function Transactions({transactions}) {
         }
       }
       state.setOperation(null)
+      state.setStatus(null)
       const data = await GetTransactionDetails(body);
       state.setTransactions(data.transactions);
       state.setTransationDetails(data.transactions.detailedReport)

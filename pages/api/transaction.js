@@ -44,7 +44,6 @@ export default async function handler(req, res) {
         var currentData={}
             x.split(',').forEach((d,i)=>{
                 if(headers[i] === 'Operation'){
-                    console.log(d)
                 if(!operations.includes(d)){
                     operations.push(d)
                 }
