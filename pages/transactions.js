@@ -77,7 +77,7 @@ export default function Transactions({transactions, error}) {
       })
     })
   }
-  const notInclude= ["code","message","seqno","ref","hashtotal","csv","detailedReport","operations","status"]
+  const notInclude= ["code","message","seqno","ref","csv","detailedReport","operations","status"]
     return (
         <div className="transaction">
             <div className="transaction-data">
@@ -91,10 +91,16 @@ export default function Transactions({transactions, error}) {
                     </div>
                     {Object.keys(allTransactions).map(x=>{
                         if(!notInclude.includes(x)){
+                            if(x === 'hashtotal'){
+                                return(<div key={x} className = {`total`}>
+                                <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total_records}</span>  <span className="total-rand">{allTransactions[x].hashtotal_rand_value}</span>  <span  className="total-usd">{allTransactions[x].hashtotal_usd_value}</span> 
+                                </div>)
+                            }
+                            else{
                         return(<div key={x} className = {`total`}>
                                 <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total}</span>  <span className="total-rand">{allTransactions[x].total_rand_value}</span>  <span  className="total-usd">{allTransactions[x].total_usd_value}</span> 
                         </div>
-                    )}})}
+                    )}}})}
                     </div>
                     <div className="transaction-details-table"><br/>
                     <h2>Transactions Details</h2>
