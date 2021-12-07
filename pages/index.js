@@ -19,7 +19,7 @@ async function handleFormSubmission(event){
     username: event.target.username.value,
     password: event.target.password.value
   }
-  const res = await fetch(process.env.site_url || 'http://localhost:3000'+ '/api/login',{
+  const res = await fetch(process.env.NEXT_PUBLIC_site_url || 'http://localhost:3000'+ '/api/login',{
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json'
