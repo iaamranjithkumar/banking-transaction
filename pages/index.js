@@ -32,7 +32,7 @@ async function handleFormSubmission(event){
   if(result.success == 'true'){
     window.document.cookie=`sarb_ref_id=${result.data.ref}`; 
     window.document.cookie=`sarb_sessid=${result.data.sessid}`; //Need to set Max age for session based on session_expiry parameter
-   window.location.href='/transaction'
+   window.location.href='/transactions'
   }else{
     alert('Wrong Username or Password')
   }
