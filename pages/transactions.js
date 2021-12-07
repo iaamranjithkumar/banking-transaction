@@ -63,8 +63,8 @@ export default function Transactions({transactions, error}) {
     var today = new Date().toISOString().split('T')[0]
     const [currentDate, setDate] = useState(today);
     const [allTransactions,setTransactions] = useState(transactions)
-    const [selectedOperation,setOperation] = useState(null)
-    const [status,setStatus] = useState(null)
+    const [selectedOperation,setOperation] = useState("ALL")
+    const [status,setStatus] = useState("ALL")
     const [transationDetails, setTransationDetails] = useState(transactions && transactions.detailedReport)
     const columns = []
    const state = {setTransactions,setTransationDetails,setDate, setStatus, setOperation,status,selectedOperation,status,allTransactions,transationDetails}
@@ -105,18 +105,24 @@ export default function Transactions({transactions, error}) {
                     <div className="transaction-details-table"><br/>
                     <h2>Transactions Details</h2>
                     <div className="filters">
+                        <span>
+                    <label>Select Operation</label>
                     <select onChange={(e)=>{onOperationChange(e.target.value, state)}}>
-                         <option value="" disabled selected={selectedOperation==null} hidden={selectedOperation}>Select Operation</option>
+                         <option value="ALL" selected={selectedOperation === "ALL"}>ALL</option>
                             {allTransactions.operations && allTransactions.operations.map(x=>{
                                 return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
                             })}
                     </select>
+                    </span>
+                    <span>
+                    <label>Select Status</label>
                     <select onChange={(e)=>{onStatusChange(e.target.value, state)}}>
-                         <option value="" disabled selected={status==null} hidden={status}>Select Status</option>
+                      <option value="ALL" selected={status === "ALL"}>ALL</option>
                             {allTransactions.status && allTransactions.status.map(x=>{
                                 return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
                             })}
                     </select>
+                    </span>
                     <a href="#"><CsvDownload data={transationDetails}>Click here to Download</CsvDownload></a>
                     </div>
                     <div className="result">
@@ -135,11 +141,11 @@ export default function Transactions({transactions, error}) {
 
   function onOperationChange(value, state){
       state.setOperation(value)
-      state.setTransationDetails(state.allTransactions.detailedReport.filter(x=>x.Operation == value && (state.status?state.status == x.Status:true)))
+      state.setTransationDetails(state.allTransactions.detailedReport.filter(x=>(value =="ALL" || x.Operation == value) && (state.status && state.status !='ALL'?state.status == x.Status:true)))
   }
   function onStatusChange(value, state){
     state.setStatus(value)
-    state.setTransationDetails(state.allTransactions.detailedReport.filter(x=>x.Status == value && (state.selectedOperation?state.selectedOperation == x.Operation:true)))
+    state.setTransationDetails(state.allTransactions.detailedReport.filter(x=>(value =="ALL" || x.Status == value) && (state.selectedOperation && state.selectedOperation !='ALL'?state.selectedOperation == x.Operation:true)))
 }
 
 
@@ -156,8 +162,8 @@ export default function Transactions({transactions, error}) {
           }
         }
       }
-      state.setOperation(null)
-      state.setStatus(null)
+      state.setOperation("ALL")
+      state.setStatus("ALL")
       const data = await GetTransactionDetails(body);
       state.setTransactions(data.transactions);
       state.setTransationDetails(data.transactions.detailedReport)
