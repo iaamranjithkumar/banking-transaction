@@ -27,7 +27,8 @@ body {
 .result{
   margin-bottom: 10px;
 }
-.filters select{
+.filters span label{
+  margin-right: 10px;
   margin-left: 20px;
 }
 .filters a{
