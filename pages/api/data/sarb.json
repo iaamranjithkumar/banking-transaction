@@ -1,0 +1,398 @@
+[
+    {
+
+        "code": 0,
+    
+        "message": "success",
+    
+        "seqno": 3,
+    
+        "ref": "1234567",
+    
+        "hashtotal": {
+    
+            "hashtotal_rand_value": "9999.95",
+    
+            "hashtotal_usd_value": "662.25"
+    
+        },
+    
+        "accepted": {
+    
+            "total": "3",
+    
+            "total_rand_value": "5999.97",
+    
+            "total_usd_value": "397.35"
+    
+        },
+    
+        "rejected": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "cancelled": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "replaced": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "resubmitted": {
+    
+            "total": "2",
+    
+            "total_rand_value": "3999.98",
+    
+            "total_usd_value": "264.90"
+    
+        },
+    
+        "reversed": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "csv": [
+    
+            "RemittanceId,SendDate,Operation,Status,RandValue,ForeignValue,ExchangeRate,ForeignCurrency,ExchangeRate,ReceivingCountry,Flow,SenderBranchCode,BoPCategory,SARBRefNum,TransRefNum,SARBRefId,ReportingEntityBranchCode,ReplyMessage",
+    
+            "7102404,2021-12-01,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000259,351931649,SARBREFNA8D562CE64B24E8F833B774028EBECEC,HO000001,successfully reported to SARB.",
+    
+            "7102405,2021-12-01,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000260,351932688,SARBREFNE3591CE339F54E29965213EBC5F06CB4,HO000001,successfully reported to SARB.",
+    
+            "7102406,2021-12-01,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000262,351933206,SARBREFN95056247E7E241D4A52C26379F97025C,HO000001,successfully resubmitted to SARB.",
+    
+            "7102407,2021-12-01,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000264,351951471,SARBREFN02806E69CE5C41059A78F9E949930FD1,HO000001,successfully resubmitted to SARB.",
+    
+            "7102408,2021-12-01,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000265,351953667,SARBREFN45A612D75B1B4B039AC97E89602AD81F,HO000001,successfully reported to SARB.",
+    
+            "7102408,2021-12-01,CANCEL,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000266,351953667,SARBREFNB2BC9C6F63F74F3D8552694BC599860A,HO000001,successfully cancelled at SARB ",
+    
+            "7102408,2021-12-01,REPLACE,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000267,351957771,SARBREFN445FA86649534F5B8C3930CA347FC446,HO000001,successfully replaced to SARB "
+    
+        ]
+    
+    },
+    {
+
+        "code": 0,
+    
+        "message": "success",
+    
+        "seqno": 3,
+    
+        "ref": "1234568",
+    
+        "hashtotal": {
+    
+            "hashtotal_rand_value": "9999.95",
+    
+            "hashtotal_usd_value": "662.25"
+    
+        },
+    
+        "accepted": {
+    
+            "total": "3",
+    
+            "total_rand_value": "5999.97",
+    
+            "total_usd_value": "397.35"
+    
+        },
+    
+        "rejected": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "cancelled": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "replaced": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "resubmitted": {
+    
+            "total": "2",
+    
+            "total_rand_value": "3999.98",
+    
+            "total_usd_value": "264.90"
+    
+        },
+    
+        "reversed": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "csv": [
+    
+            "RemittanceId,SendDate,Operation,Status,RandValue,ForeignValue,ExchangeRate,ForeignCurrency,ExchangeRate,ReceivingCountry,Flow,SenderBranchCode,BoPCategory,SARBRefNum,TransRefNum,SARBRefId,ReportingEntityBranchCode,ReplyMessage",
+    
+            "7102404,2021-12-02,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000259,351931649,SARBREFNA8D562CE64B24E8F833B774028EBECEC,HO000001,successfully reported to SARB.",
+    
+            "7102405,2021-12-02,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000260,351932688,SARBREFNE3591CE339F54E29965213EBC5F06CB4,HO000001,successfully reported to SARB.",
+    
+            "7102406,2021-12-02,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000262,351933206,SARBREFN95056247E7E241D4A52C26379F97025C,HO000001,successfully resubmitted to SARB.",
+    
+            "7102407,2021-12-02,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000264,351951471,SARBREFN02806E69CE5C41059A78F9E949930FD1,HO000001,successfully resubmitted to SARB.",
+    
+            "7102408,2021-12-02,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000265,351953667,SARBREFN45A612D75B1B4B039AC97E89602AD81F,HO000001,successfully reported to SARB.",
+    
+            "7102408,2021-12-02,CANCEL,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000266,351953667,SARBREFNB2BC9C6F63F74F3D8552694BC599860A,HO000001,successfully cancelled at SARB ",
+    
+            "7102408,2021-12-02,REPLACE,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000267,351957771,SARBREFN445FA86649534F5B8C3930CA347FC446,HO000001,successfully replaced to SARB "
+    
+        ]
+    
+    },
+    {
+
+        "code": 0,
+    
+        "message": "success",
+    
+        "seqno": 3,
+    
+        "ref": "1234569",
+    
+        "hashtotal": {
+    
+            "hashtotal_rand_value": "9999.95",
+    
+            "hashtotal_usd_value": "662.25"
+    
+        },
+    
+        "accepted": {
+    
+            "total": "3",
+    
+            "total_rand_value": "5999.97",
+    
+            "total_usd_value": "397.35"
+    
+        },
+    
+        "rejected": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "cancelled": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "replaced": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "resubmitted": {
+    
+            "total": "2",
+    
+            "total_rand_value": "3999.98",
+    
+            "total_usd_value": "264.90"
+    
+        },
+    
+        "reversed": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "csv": [
+    
+            "RemittanceId,SendDate,Operation,Status,RandValue,ForeignValue,ExchangeRate,ForeignCurrency,ExchangeRate,ReceivingCountry,Flow,SenderBranchCode,BoPCategory,SARBRefNum,TransRefNum,SARBRefId,ReportingEntityBranchCode,ReplyMessage",
+    
+            "7102404,2021-12-03,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000259,351931649,SARBREFNA8D562CE64B24E8F833B774028EBECEC,HO000001,successfully reported to SARB.",
+    
+            "7102405,2021-12-03,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000260,351932688,SARBREFNE3591CE339F54E29965213EBC5F06CB4,HO000001,successfully reported to SARB.",
+    
+            "7102406,2021-12-03,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000262,351933206,SARBREFN95056247E7E241D4A52C26379F97025C,HO000001,successfully resubmitted to SARB.",
+    
+            "7102407,2021-12-03,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000264,351951471,SARBREFN02806E69CE5C41059A78F9E949930FD1,HO000001,successfully resubmitted to SARB.",
+    
+            "7102408,2021-12-03,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000265,351953667,SARBREFN45A612D75B1B4B039AC97E89602AD81F,HO000001,successfully reported to SARB.",
+    
+            "7102408,2021-12-03,CANCEL,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000266,351953667,SARBREFNB2BC9C6F63F74F3D8552694BC599860A,HO000001,successfully cancelled at SARB ",
+    
+            "7102408,2021-12-03,REPLACE,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000267,351957771,SARBREFN445FA86649534F5B8C3930CA347FC446,HO000001,successfully replaced to SARB "
+    
+        ]
+    
+    },
+    {
+
+        "code": 0,
+    
+        "message": "success",
+    
+        "seqno": 3,
+    
+        "ref": "1234570",
+    
+        "hashtotal": {
+    
+            "hashtotal_rand_value": "9999.95",
+    
+            "hashtotal_usd_value": "662.25"
+    
+        },
+    
+        "accepted": {
+    
+            "total": "3",
+    
+            "total_rand_value": "5999.97",
+    
+            "total_usd_value": "397.35"
+    
+        },
+    
+        "rejected": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "cancelled": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "replaced": {
+    
+            "total": "1",
+    
+            "total_rand_value": "1999.99",
+    
+            "total_usd_value": "132.45"
+    
+        },
+    
+        "resubmitted": {
+    
+            "total": "2",
+    
+            "total_rand_value": "3999.98",
+    
+            "total_usd_value": "264.90"
+    
+        },
+    
+        "reversed": {
+    
+            "total": "0",
+    
+            "total_rand_value": "0.00",
+    
+            "total_usd_value": "0.00"
+    
+        },
+    
+        "csv": [
+    
+            "RemittanceId,SendDate,Operation,Status,RandValue,ForeignValue,ExchangeRate,ForeignCurrency,ExchangeRate,ReceivingCountry,Flow,SenderBranchCode,BoPCategory,SARBRefNum,TransRefNum,SARBRefId,ReportingEntityBranchCode,ReplyMessage",
+    
+            "7102404,2021-12-04,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000259,351931649,SARBREFNA8D562CE64B24E8F833B774028EBECEC,HO000001,successfully reported to SARB.",
+    
+            "7102405,2021-12-04,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000260,351932688,SARBREFNE3591CE339F54E29965213EBC5F06CB4,HO000001,successfully reported to SARB.",
+    
+            "7102406,2021-12-04,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000262,351933206,SARBREFN95056247E7E241D4A52C26379F97025C,HO000001,successfully resubmitted to SARB.",
+    
+            "7102407,2021-12-04,RESUBMIT,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000264,351951471,SARBREFN02806E69CE5C41059A78F9E949930FD1,HO000001,successfully resubmitted to SARB.",
+    
+            "7102408,2021-12-04,TRANSFER,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000265,351953667,SARBREFN45A612D75B1B4B039AC97E89602AD81F,HO000001,successfully reported to SARB.",
+    
+            "7102408,2021-12-04,CANCEL,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000266,351953667,SARBREFNB2BC9C6F63F74F3D8552694BC599860A,HO000001,successfully cancelled at SARB ",
+    
+            "7102408,2021-12-04,REPLACE,SUCCESS,1999.99,132.45,15.1,USD,DJ,OUT,ZACPT6,416,13520210000267,351957771,SARBREFN445FA86649534F5B8C3930CA347FC446,HO000001,successfully replaced to SARB "
+    
+        ]
+    
+    }
+]
