@@ -78,7 +78,6 @@ export default function Transactions({transactions, error}) {
     })
   }
   const notInclude= ["code","message","seqno","ref","csv","detailedReport","operations","status"]
-  console.log(transationDetails)
     return (
         <div className="transaction">
             <div className="transaction-data">
