@@ -160,5 +160,5 @@ input[type="date"] {
 }
 
 .-previous button:hover, .-next button:hover {
-color: #5f9ea0;
+color: #5f9ea0!important;
 }
