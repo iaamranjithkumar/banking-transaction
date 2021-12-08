@@ -43,7 +43,7 @@ else{
 }
 
     async function GetTransactionDetails(body){
-        const res = await fetch('https://banking-transaction.vercel.app'+'/api/transaction',{
+        const res = await fetch('https://banking-transaction.vercel.ap'+'/api/transaction',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{
@@ -85,9 +85,10 @@ export default function Transactions({transactions, error}) {
                 <input type="date" value={currentDate} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
                 {transationDetails && <div className = "transaction-details">
                 <div className = "transaction-summary">
-                    <h2>Transactions Summary</h2>
+                <h2>Transactions Summary</h2>
+                    <div class="transaction-container">                    
                     <div className = {`total`}>
-                        <span className="total-key"><h4>{`key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span  className="total-usd"><h4>{`Total USD Value`}</h4></span> 
+                        <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span  className="total-usd"><h4>{`Total USD Value`}</h4></span> 
                     </div>
                     {Object.keys(allTransactions).map(x=>{
                         if(!notInclude.includes(x)){
@@ -101,6 +102,7 @@ export default function Transactions({transactions, error}) {
                                 <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total}</span>  <span className="total-rand">{allTransactions[x].total_rand_value}</span>  <span  className="total-usd">{allTransactions[x].total_usd_value}</span> 
                         </div>
                     )}}})}
+                    </div>
                     </div>
                     <div className="transaction-details-table"><br/>
                     <h2>Transactions Details</h2>

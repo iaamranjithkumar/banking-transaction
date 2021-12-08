@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 body {
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  background-image: linear-gradient(to right,#0093e9 0%,#80d0c7 100%);
   margin: 0;
   padding: 0;
-  color: #fff;
+  color: #000;
+}
+
+h2 {
+  color: #152780;
 }
 
 .transaction {
@@ -13,13 +17,26 @@ body {
 
 input[type="date"] {
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
+}
+
+.transaction-summary {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.transaction-container {
+  background-color: #fff;
+  box-shadow: 6px 6px 21px 1px #00000036;
 }
 
 .transaction-data{
   margin: 0 auto;
 }
+
 .total{
   clear: both;
   display: flex;
@@ -32,12 +49,12 @@ input[type="date"] {
   width: 200px;
 }
 
-.total-key h4, .total-count h4, .total-rand h4, .total-usd h4{
-
-  background: #5f9ea0;
-  padding: 10px;
-
+.total:first-child .total-key, .total:first-child .total-count, .total:first-child .total-rand, .total:first-child .total-usd {
+  background: #2c44b9;
+  color: #fff;
 }
+
+
 .transaction-details-table{
   clear: both;
 }
@@ -46,16 +63,31 @@ input[type="date"] {
 }
 .filters select {
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 .filters button {
-  padding: 10px 15px;
-  background-color: #7bf7cf;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
+  font-family: 'Comfortaa', cursive; 
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 6px;  
+  padding: 1em 3em;
+  background-size: 200% auto;
+  color: white;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background-image: linear-gradient(to right, #5c61f2 0%, #99c8f8 50%, #5c61f2 100%);
+  transition: 0.5s;
   cursor: pointer;
 }
+  
+.filters button:hover {
+  background-position: right center;
+}
+  
+
 .result{
   margin-bottom: 10px;
 }
@@ -101,7 +133,7 @@ input[type="date"] {
   background: #dbdbdb;
 }
 
-.form button {
+/* .form button {
   font-family: 'Comfortaa', cursive;
   text-transform: uppercase;
   outline: 0;
@@ -115,6 +147,30 @@ input[type="date"] {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+} */
+
+.form button {
+  font-family: 'Comfortaa', cursive;
+  width: 100%;  
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1em!important;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 6px;  
+  padding: 1em 3em;
+  background-size: 200% auto;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background-image: linear-gradient(to right, #5c61f2 0%, #99c8f8 50%, #5c61f2 100%);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-position: right center;
 }
 
 .form button:active {
@@ -128,7 +184,8 @@ input[type="date"] {
 
 .ReactTable .rt-thead.-header {
 
-  background-color: #5f9ea0;
+  background-color: #2c44b9;
+  color: #fff;
 
 }
 
@@ -136,13 +193,21 @@ input[type="date"] {
   position: fixed;
   bottom: 0;
   display: flex;
-  background: #5f9ea0;
+  background: #2c44b9;
   width: 100%;
 }
 
 .ReactTable .-pagination {
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
+}
+
+.ReactTable .rt-tbody {
+  background-color: #fff;
+}
+
+.ReactTable .-pagination .-center {
+  color: #fff;
 }
 
 .-previous button {
@@ -160,5 +225,5 @@ input[type="date"] {
 }
 
 .-previous button:hover, .-next button:hover {
-color: #5f9ea0!important;
+color: #2c44b9!important;
 }
