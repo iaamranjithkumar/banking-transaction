@@ -2,27 +2,59 @@
 
 body {
   background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  margin: 0;
+  padding: 0;
+  color: #fff;
 }
 
 .transaction {
-  background: white;
-  
+  text-align: center;  
 }
+
+input[type="date"] {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+}
+
 .transaction-data{
   margin: 0 auto;
 }
 .total{
   clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
 .total span{
   float: left;
   width: 200px;
+}
+
+.total-key h4, .total-count h4, .total-rand h4, .total-usd h4{
+
+  background: #5f9ea0;
+  padding: 10px;
+
 }
 .transaction-details-table{
   clear: both;
 }
 .filters{
   margin-bottom: 25px;
+}
+.filters select {
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.filters button {
+  padding: 10px 15px;
+  background-color: #7bf7cf;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .result{
   margin-bottom: 10px;
@@ -92,4 +124,41 @@ body {
 .form span {
   font-size: 75px;
   color: #4b6cb7;
+}
+
+.ReactTable .rt-thead.-header {
+
+  background-color: #5f9ea0;
+
+}
+
+.pagination-bottom {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  background: #5f9ea0;
+  width: 100%;
+}
+
+.ReactTable .-pagination {
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.-previous button {
+  background: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.-next button {
+  background: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.-previous button:hover, .-next button:hover {
+color: #5f9ea0;
 }
