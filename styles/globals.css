@@ -146,14 +146,14 @@ input[type="date"] {
 }
 
 .-previous button {
-  background: #ffffff;
+  background: #fff!important;
   font-weight: 600;
   cursor: pointer;
   opacity: 1;
 }
 
 .-next button {
-  background: #ffffff;
+  background: #fff!important;
   font-weight: 600;
   cursor: pointer;
   opacity: 1;
