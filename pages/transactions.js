@@ -86,7 +86,7 @@ export default function Transactions({transactions, error}) {
                 {transationDetails && <div className = "transaction-details">
                 <div className = "transaction-summary">
                 <h2>Transactions Summary</h2>
-                    <div class="transaction-container">                    
+                    <div className = "transaction-container">                    
                     <div className = {`total`}>
                         <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span  className="total-usd"><h4>{`Total USD Value`}</h4></span> 
                     </div>
