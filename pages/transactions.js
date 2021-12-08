@@ -68,9 +68,9 @@ export default function Transactions({transactions, error}) {
     const [transationDetails, setTransationDetails] = useState(transactions && transactions.detailedReport)
     const columns = []
    const state = {setTransactions,setTransationDetails,setDate, setStatus, setOperation,status,selectedOperation,status,allTransactions,transationDetails}
-    if(transactions.detailedReport && transactions.detailedReport)
+    if(transationDetails && transationDetails.length)
      {
-       Object.keys(transactions.detailedReport[0]).forEach((x,i)=>{
+       Object.keys(transationDetails[0]).forEach((x,i)=>{
       columns.push({
         Header: x,
         accessor: x
@@ -78,6 +78,7 @@ export default function Transactions({transactions, error}) {
     })
   }
   const notInclude= ["code","message","seqno","ref","csv","detailedReport","operations","status"]
+  console.log(transationDetails)
     return (
         <div className="transaction">
             <div className="transaction-data">
