@@ -191,7 +191,7 @@ input[type="date"] {
 }
 
 .pagination-bottom {
-  position: fixed;
+  position: inherit;
   bottom: 0;
   display: flex;
   background: #2c44b9;
@@ -211,6 +211,9 @@ input[type="date"] {
   color: #fff;
 }
 
+.rt-table{
+  overflow :scroll;
+}
 .-previous button {
   background: #fff!important;
   font-weight: 600;
