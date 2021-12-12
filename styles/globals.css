@@ -234,3 +234,19 @@ input[type="date"] {
 .-previous button:hover, .-next button:hover {
 color: #2c44b9!important;
 }
+
+.rt-table::-webkit-scrollbar {
+  background: #199fe3;
+  width: 10px;
+  height: 10px;
+}
+.rt-table::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #1da1e1;
+  height: 5px;
+}
+.rt-table::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #2c44b9;
+  height: 6px;
+}
