@@ -1,4 +1,3 @@
-import content from './data/sarb.json'
 import axios from 'axios'
 
 export default async function handler(req, res) {

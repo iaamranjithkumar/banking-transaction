@@ -7,6 +7,7 @@ export default function Home() {
         <input type="text" id="username" placeholder="username" required/>
         <input type="password" id="password"  placeholder="password" required />
         <button>login</button>
+        <input type="checkbox" id="rememberme">Remember me</input>
       </form>  
     </div>
   </div>
@@ -15,9 +16,15 @@ export default function Home() {
 
 async function handleFormSubmission(event){
   event.preventDefault()
+  let username = event.target.username.value
+  let password = event.target.password.value
+  if(event.target.rememberme.checked){
+    window.document.cookie=`sarb_username=${username}`; 
+    window.document.cookie=`sarb_password=${password}`; 
+  }
   var data = {
-    username: event.target.username.value,
-    password: event.target.password.value
+    username,
+    password
   }
   const res = await fetch('/api/login',{
     body: JSON.stringify(data),

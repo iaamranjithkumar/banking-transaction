@@ -3,14 +3,15 @@ html{
     height: 100%;
 }
 body {
-  background-image: linear-gradient(to right,#0093e9 0%,#80d0c7 100%);
   margin: 0;
   padding: 0;
   color: #000;
   font-family: Comfortaa,cursive;
   height: 100%;
 }
-
+#__next{
+  height: 100%;
+}
 h2 {
   color: #152780;
 }
@@ -23,6 +24,10 @@ input[type="date"] {
   padding: 10px 15px;
   border-radius: 6px;
   border: none;
+}
+.transaction{
+  height: 100%;
+  background-image: linear-gradient(to right,#0093e9 0%,#80d0c7 100%);
 }
 
 .transaction-summary {
@@ -153,7 +158,7 @@ input[type="date"] {
   cursor: pointer;
 } */
 
-.form button {
+.form button,.recon-select-form button, .recon-csv-download button {
   font-family: 'Comfortaa', cursive;
   width: 100%;  
   text-align: center;
@@ -172,7 +177,6 @@ input[type="date"] {
   transition: 0.5s;
   cursor: pointer;
 }
-
 .form button:hover {
   background-position: right center;
 }
@@ -233,4 +237,75 @@ input[type="date"] {
 
 .-previous button:hover, .-next button:hover {
 color: #2c44b9!important;
+}
+.recon-select-form, .recon-csv-download,.loader{
+  text-align: center;
+}
+.recon .-previous button:hover, .recon .-next button:hover {
+  color: #009B77!important;
+  }
+
+.recon{
+  background-color: #009B77;
+  height: 100%;
+  padding-top: 20px;
+}
+.recon-select-form button,.recon-csv-download button{
+  width: 280px;
+  -webkit-box-shadow: 0 2px 0 #6f9a37;
+    box-shadow: 0 2px 0 #6f9a37;
+    background: #82b440;
+}
+.recon-csv-download button{
+  width: 350px;
+  
+}
+.recon-csv-download{
+  margin-top: 10px;
+}
+.recon-select-form .recon-inputs-checkbox{
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+.recon-select-form .recon-inputs-checkbox label{
+  margin-right: 10px;
+}
+.recon-select-form .form-error {
+  margin-top: 15px;
+  color: #f5c81f;
+}
+.recon-error{
+  margin-top: 15px;
+  color: #f5c81f;
+  text-align: center;
+}
+
+.recon .ReactTable, .recon .pagination-bottom{
+  background-color: #3db58c;
+  font-size: 12px;
+}
+.ReactTable .rt-thead.-header {
+
+  background-color: #3db58c;
+  color: #fff;
+
+}
+.recon-details-table h2{
+  color: #f5c81f;
+  text-align: center;
+}
+.recon-details-table p{
+  color: white;
+  text-align: center;
+}
+.recon-details-table .result{
+  text-align: center;
+  color: white;
+}
+.table-rs{
+  width: 95%;
+  margin: 0 auto;
+}
+.loader{
+  margin-top: 25px;
 }
