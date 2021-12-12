@@ -53,7 +53,7 @@ else{
 }
 
     async function GetTransactionDetails(body){
-        const res = await fetch('http://localhost:3000'+'/api/transaction',{
+        const res = await fetch('https://banking-transaction.vercel.app/'+'/api/transaction',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{
@@ -104,7 +104,7 @@ export default function Transactions({transactions, error}) {
                             <div className={`total`}>
                                 <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span className="total-usd"><h4>{`Total USD Value`}</h4></span>
                             </div>
-                            {Object.keys(allTransactions).map(x => {
+                            {allTransactions && Object.keys(allTransactions).map(x => {
                                 if (!notInclude.includes(x)) {
                                     if (x === 'hashtotal') {
                                         return (<div key={x} className={`total`}>

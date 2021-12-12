@@ -334,3 +334,38 @@ color: #2c44b9!important;
   font-size: 14px;
   color: white;
 }
+
+.reports{
+  background:#009B77;
+  min-height: 100%;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  background:#009B77;
+  color: white;
+  font-family: Helvetica;
+  font-weight: 300;
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 150%;
+  padding: 12px 16px;
+}
+
+.navbar__item {
+  padding: 16px 16px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.navbar .active{
+  color: #f5c81f;
+}
+.navbar__item:hover{
+  color: yellow;
+}
+.navbar .active:hover{
+  color: #f5c81f;
+}
