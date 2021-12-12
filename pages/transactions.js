@@ -18,7 +18,15 @@ Transactions.getInitialProps = async (ctx) => {
                 }
                 }
             }
-        return await GetTransactionDetails(body);
+        let {transactions, error} = await GetTransactionDetails(body);
+        if(error && error.code === 'ERR_SESSION_EXPD'){
+            ctx.res&& ctx.res.writeHead('302',{
+                Location: '/'
+              })
+              ctx.res.end();
+        }else{
+         return {transactions, error}  
+        }
      
     }else{
         ctx.res&& ctx.res.writeHead('302',{
@@ -57,6 +65,9 @@ else{
               transactions: null,
           }
         }
+        if(data.data.code == 11){
+            return {error: {code:'ERR_SESSION_EXPD',message:'Session Expired !! Login Again', transactions: null}}
+        }
         return {transactions: data.data }
       }
 export default function Transactions({transactions, error}) {
@@ -81,62 +92,74 @@ export default function Transactions({transactions, error}) {
     return (
         <div className="transaction">
             <div className="transaction-data">
-            <h2>Select Date</h2>
-                <input type="date" value={currentDate} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
-                {transationDetails && <div className = "transaction-details">
-                <div className = "transaction-summary">
-                <h2>Transactions Summary</h2>
-                    <div className = "transaction-container">                    
-                    <div className = {`total`}>
-                        <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span  className="total-usd"><h4>{`Total USD Value`}</h4></span> 
-                    </div>
-                    {Object.keys(allTransactions).map(x=>{
-                        if(!notInclude.includes(x)){
-                            if(x === 'hashtotal'){
-                                return(<div key={x} className = {`total`}>
-                                <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total_records}</span>  <span className="total-rand">{allTransactions[x].hashtotal_rand_value}</span>  <span  className="total-usd">{allTransactions[x].hashtotal_usd_value}</span> 
-                                </div>)
-                            }
-                            else{
-                        return(<div key={x} className = {`total`}>
-                                <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total}</span>  <span className="total-rand">{allTransactions[x].total_rand_value}</span>  <span  className="total-usd">{allTransactions[x].total_usd_value}</span> 
-                        </div>
-                    )}}})}
-                    </div>
-                    </div>
-                    <div className="transaction-details-table"><br/>
-                    <h2>Transactions Details</h2>
-                    <div className="filters">
-                        <span>
-                    <label>Select Operation</label>
-                    <select onChange={(e)=>{onOperationChange(e.target.value, state)}}>
-                         <option value="ALL" selected={selectedOperation === "ALL"}>ALL</option>
-                            {allTransactions.operations && allTransactions.operations.map(x=>{
-                                return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
+                <h2>Select Date</h2>
+                    <input type="date" value={currentDate} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
+                    {<div className = "transaction-details">
+                    <div className = "transaction-summary">
+                    <h2>Transactions Summary - {currentDate}</h2>
+                        <div className="transaction-container">
+                            <div className={`total`}>
+                                <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span className="total-usd"><h4>{`Total USD Value`}</h4></span>
+                            </div>
+                            {Object.keys(allTransactions).map(x => {
+                                if (!notInclude.includes(x)) {
+                                    if (x === 'hashtotal') {
+                                        return (<div key={x} className={`total`}>
+                                            <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total_records}</span>  <span className="total-rand">{allTransactions[x].hashtotal_rand_value}</span>  <span className="total-usd">{allTransactions[x].hashtotal_usd_value}</span>
+                                        </div>);
+                                    }
+                                    else {
+                                        return (<div key={x} className={`total`}>
+                                            <span className="totalKey">{x}</span> <span className="total-count">{allTransactions[x].total}</span>  <span className="total-rand">{allTransactions[x].total_rand_value}</span>  <span className="total-usd">{allTransactions[x].total_usd_value}</span>
+                                        </div>
+                                        );
+                                    }
+                                }
                             })}
-                    </select>
-                    </span>
-                    <span>
-                    <label>Select Status</label>
-                    <select onChange={(e)=>{onStatusChange(e.target.value, state)}}>
-                      <option value="ALL" selected={status === "ALL"}>ALL</option>
-                            {allTransactions.status && allTransactions.status.map(x=>{
-                                return(<option key={x} value={x} selected={selectedOperation == x} >{x}</option>)
-                            })}
-                    </select>
-                    </span>
-                    <a href="#"><CsvDownload data={transationDetails}>Click here to Download</CsvDownload></a>
-                    </div>
-                    <div className="result">
-                        Result: <strong>{transationDetails.length}</strong> Transactions
                         </div>
-                    <ReactTable
-                        data={transationDetails}
-                        columns={columns} 
-                        defaultPageSize={5}/>
                         </div>
-                </div>}
-        </div> 
+           {error && error.code === 'ERR_SESSION_EXPD' &&<div>
+                    {window.alert('Session Expired. Please Login again!!!')}
+                   {window.location.href='/'}
+               </div>}
+                    {transationDetails && transationDetails.length && <div><div className="transaction-details">
+                       
+                    </div><div className="transaction-details-table"><br />
+                            <h2>Transactions Details</h2>
+                            <div className="filters">
+                                <span>
+                                    <label>Select Operation</label>
+                                    <select onChange={(e) => { onOperationChange(e.target.value, state); } }>
+                                        <option value="ALL" selected={selectedOperation === "ALL"}>ALL</option>
+                                        {allTransactions.operations && allTransactions.operations.map(x => {
+                                            return (<option key={x} value={x} selected={selectedOperation == x}>{x}</option>);
+                                        })}
+                                    </select>
+                                </span>
+                                <span>
+                                    <label>Select Status</label>
+                                    <select onChange={(e) => { onStatusChange(e.target.value, state); } }>
+                                        <option value="ALL" selected={status === "ALL"}>ALL</option>
+                                        {allTransactions.status && allTransactions.status.map(x => {
+                                            return (<option key={x} value={x} selected={selectedOperation == x}>{x}</option>);
+                                        })}
+                                    </select>
+                                </span>
+                                <a href="#"><CsvDownload data={transationDetails}>Click here to Download</CsvDownload></a>
+                            </div>
+                            <div className="result">
+                                Result: <strong>{transationDetails.length}</strong> Transactions
+                            </div>
+                            <ReactTable
+                                data={transationDetails}
+                                columns={columns}
+                                defaultPageSize={5} />
+                        </div></div>
+                    }
+                    {}
+            </div> 
+            }
+        </div>
         </div>
     )
   }

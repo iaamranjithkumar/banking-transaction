@@ -37,9 +37,9 @@ export default async function handler(req, res) {
       var formattedData=[]
       var operations = []
       var status=[]
-    var headers = data[0].split(',')
-    data.shift()
-    data.forEach(x=>{
+      var headers = data[0].split(',')
+      data.shift()
+      data.forEach(x=>{
            
         var currentData={}
             x.split(',').forEach((d,i)=>{
