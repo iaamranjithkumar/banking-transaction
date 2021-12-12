@@ -109,7 +109,7 @@ export default function ReconDetails() {
                                 defaultPageSize={5} />
                                 </div>
                                 <div className="recon-csv-download">
-                                <a href="#" ><CsvDownload data={allReconDetails}>Click here to Download</CsvDownload></a>
+                               <CsvDownload data={allReconDetails}>Click here to Download</CsvDownload>
                                 </div>
                         </div>
                         </div>

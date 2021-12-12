@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactTable from "react-table-6";
 import CsvDownload from 'react-json-to-csv'
 import "react-table-6/react-table.css";
+import loaderImage from '../images/loader.gif'
+import Image from 'next/image'
 Transactions.getInitialProps = async (ctx) => {
     if(ctx&&ctx.req&&ctx.req.headers){
         if(ctx.req.headers.cookie){
@@ -77,8 +79,9 @@ export default function Transactions({transactions, error}) {
     const [selectedOperation,setOperation] = useState("ALL")
     const [status,setStatus] = useState("ALL")
     const [transationDetails, setTransationDetails] = useState(transactions && transactions.detailedReport)
+    const [loader,setLoader] = useState(false)
     const columns = []
-   const state = {setTransactions,setTransationDetails,setDate, setStatus, setOperation,status,selectedOperation,status,allTransactions,transationDetails}
+   const state = {setTransactions,setTransationDetails,setDate, setStatus, setOperation, setLoader,status,selectedOperation,status,allTransactions,transationDetails}
     if(transationDetails && transationDetails.length)
      {
        Object.keys(transationDetails[0]).forEach((x,i)=>{
@@ -92,11 +95,11 @@ export default function Transactions({transactions, error}) {
     return (
         <div className="transaction">
             <div className="transaction-data">
-                <h2>Select Date</h2>
+                <p>Select Date</p>
                     <input type="date" value={currentDate} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
-                    {<div className = "transaction-details">
+                    {!loader && <div className = "transaction-details">
                     <div className = "transaction-summary">
-                    <h2>Transactions Summary - {currentDate}</h2>
+                    <p>Transactions Summary - {currentDate}</p>
                         <div className="transaction-container">
                             <div className={`total`}>
                                 <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span className="total-usd"><h4>{`Total USD Value`}</h4></span>
@@ -118,14 +121,14 @@ export default function Transactions({transactions, error}) {
                             })}
                         </div>
                         </div>
-           {error && error.code === 'ERR_SESSION_EXPD' &&<div>
+                {error && error.code === 'ERR_SESSION_EXPD' &&<div>
                     {window.alert('Session Expired. Please Login again!!!')}
                    {window.location.href='/'}
                </div>}
                     {transationDetails && transationDetails.length && <div><div className="transaction-details">
                        
                     </div><div className="transaction-details-table"><br />
-                            <h2>Transactions Details</h2>
+                            <p>Transactions Details</p>
                             <div className="filters">
                                 <span>
                                     <label>Select Operation</label>
@@ -145,20 +148,26 @@ export default function Transactions({transactions, error}) {
                                         })}
                                     </select>
                                 </span>
-                                <a href="#"><CsvDownload data={transationDetails}>Click here to Download</CsvDownload></a>
                             </div>
                             <div className="result">
                                 Result: <strong>{transationDetails.length}</strong> Transactions
                             </div>
+                            <div className="table-rs">
                             <ReactTable
                                 data={transationDetails}
                                 columns={columns}
                                 defaultPageSize={5} />
+                                </div>
+                                <div className="transation-csv-download">
+                                <CsvDownload data={transationDetails}>Click here to Download</CsvDownload>
+                                </div>
                         </div></div>
                     }
-                    {}
             </div> 
             }
+           {loader && <div className="loader">
+            <Image src={loaderImage} alt="loading...." width="100" height="100"></Image>
+            </div>}
         </div>
         </div>
     )
@@ -189,13 +198,15 @@ export default function Transactions({transactions, error}) {
       }
       state.setOperation("ALL")
       state.setStatus("ALL")
+      state.setLoader(true)
       const data = await GetTransactionDetails(body);
+      state.setLoader(false)
       state.setTransactions(data.transactions);
       state.setTransationDetails(data.transactions.detailedReport)
   }
 
 
-  function getCookie(cname,cookies) {
+  function getCookie(cname,cookies=null) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(cookies || window.document.cookie);
     let ca = decodedCookie.split(';');
