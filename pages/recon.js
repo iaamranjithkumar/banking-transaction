@@ -96,7 +96,7 @@ export default function ReconDetails() {
                             <ReactTable
                                 data={allReconDetails}
                                 columns={columns}
-                                defaultPageSize={5} />
+                                defaultPageSize={10} />
                                 </div>
                                 <div className="recon-csv-download">
                                <CsvDownload data={allReconDetails}>Click here to Download</CsvDownload>

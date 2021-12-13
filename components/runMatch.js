@@ -108,7 +108,7 @@ export default function RunMatch() {
                             <ReactTable
                                 data={matchDetails}
                                 columns={columns}
-                                defaultPageSize={5} />
+                                defaultPageSize={10} />
                                 </div>
                                 <div className="recon-csv-download">
                                <CsvDownload data={matchDetails}>Click here to Download</CsvDownload>

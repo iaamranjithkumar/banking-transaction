@@ -156,7 +156,7 @@ export default function Transactions({transactions, error}) {
                             <ReactTable
                                 data={transationDetails}
                                 columns={columns}
-                                defaultPageSize={5} />
+                                defaultPageSize={10} />
                                 </div>
                                 <div className="transation-csv-download">
                                 <CsvDownload data={transationDetails}>Click here to Download</CsvDownload>
