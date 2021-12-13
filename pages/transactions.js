@@ -53,7 +53,7 @@ else{
 }
 
     async function GetTransactionDetails(body){
-        const res = await fetch('http://localhost:3000'+'/api/transaction',{
+        const res = await fetch('https://banking-transaction.vercel.app'+'/api/transaction',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{
