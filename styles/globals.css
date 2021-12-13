@@ -313,17 +313,17 @@ color: #2c44b9!important;
 }
 .rt-table::-webkit-scrollbar {
   width: 10px;
-  height: 5px;
+  height: 10px;
 }
 .rt-table::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #3cb68c;
-  height: 5px;
+  background-color: #a5dbc6;
+  height: 10px;
 }
 .rt-table::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #036850;
-  height: 6px;
+  height: 10px;
 }
 .rememberme input[type="checkbox"]{
   width: auto;

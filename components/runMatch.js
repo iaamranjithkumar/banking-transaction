@@ -134,7 +134,8 @@ export default function RunMatch() {
           "data": {
               "year": dvalue[0],
               "month": dvalue[1],
-              "date": dvalue[2]
+              "date": dvalue[2],
+              "run_match": 1
           }
         }
       }
