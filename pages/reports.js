@@ -1,6 +1,7 @@
 import Transactions from "./transactions";
 import React, { useState } from 'react';
 import ReconDetails from "./recon";
+import RunMatch from '../components/runMatch'
 
 Reports.getInitialProps = async (ctx) => {
     if(ctx&&ctx.req&&ctx.req.headers){
@@ -58,14 +59,16 @@ export default function Reports({transactions, error}) {
                 <div className="navigation">
                 <header className='navbar'>
                     <div className='navbar__title navbar__item'>Banking</div>
-                    <div className={selectedMenu === 'transaction'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('transaction')}}>Transactions</div>
-                    <div className={selectedMenu === 'recon'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('recon')}}>Recon</div>
+                    <div className={selectedMenu === 'transaction'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('transaction')}}>Reporting System</div>
+                    <div className={selectedMenu === 'recon'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('recon')}}>Accounting System</div>
+                    <div className={selectedMenu === 'run-match'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('run-match')}}>Run Match</div>
                     <div className='navbar__item' onClick={Logout}>Logout</div>        
                 </header>
                 </div>
                 <div className="main-content">
                     {selectedMenu === 'transaction' && <Transactions transactions={transactions} error={error}/>}
                     {selectedMenu === 'recon' && <ReconDetails />}
+                    {selectedMenu === 'run-match' && <RunMatch />}
                 </div>
             </div>
             </div>
@@ -74,7 +77,7 @@ export default function Reports({transactions, error}) {
 }
 
 async function GetTransactionDetails(body){
-    const res = await fetch('https://banking-transaction.vercel.app/'+'/api/transaction',{
+    const res = await fetch('http://localhost:3000'+'/api/transaction',{
         method: 'POST',
         body: JSON.stringify(body),
         headers:{

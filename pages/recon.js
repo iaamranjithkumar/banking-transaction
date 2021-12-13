@@ -31,7 +31,7 @@ ReconDetails.getInitialProps = async (ctx) => {
 }
 
 async function GetReconDetails(body){
-        const res = await fetch('https://banking-transaction.vercel.app/'+'/api/recon',{
+        const res = await fetch('http://localhost:3000'+'/api/recon',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{
@@ -51,14 +51,12 @@ async function GetReconDetails(body){
         return {ReconDetails: data.data }
       }
 export default function ReconDetails() {
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [formError,setFormError]=useState('');
+    const [currentDate, setcurrentDate] = useState('');
     const [allReconDetails,setReconDetails] = useState('')
     const [error,setError] = useState('')
     const [loader,setLoader] = useState(false)
     const columns = []
-   const state = {setReconDetails,setReconDetails,setStartDate, setEndDate,setError, setFormError,setLoader, startDate,endDate}
+   const state = {setReconDetails,setReconDetails,setcurrentDate,setError,setLoader, currentDate}
     if(allReconDetails && allReconDetails.length)
      {
        Object.keys(allReconDetails[0]).forEach((x,i)=>{
@@ -74,22 +72,14 @@ export default function ReconDetails() {
                 <div className="recon-select-form">
                     <div>
                         <div className="recon-inputs-checkbox">
-                            <label>Start Date</label>
-                            <input type="date" value={startDate} onChange={(e)=>{onStartDateChange(e.target.value,state)}}></input>
-                        </div>
-                        <div className="recon-inputs-checkbox">
-                            <label>End Date</label>
-                            <input type="date" value={endDate} onChange={(e)=>{onEndDateChange(e.target.value,state)}}></input>
-                        </div>
-                        <div className="recon-inputs-submit">
-                        <button onClick={()=>{onSubmit(state)}}>Get Report</button>
+                            <label>Select Date</label>
+                            <input type="date" value={currentDate} onChange={(e)=>{oncurrentDateChange(e.target.value,state)}}></input>
                         </div>
                     </div>
-                    {formError && formError!='' && <div className="form-error">{formError}</div>}
                     </div>
                     {<div className = "recon-details">
                       {!loader && error && error!='' &&<div className="recon-error">
-                    <h3>{error} {state.startDate} and {state.endDate}</h3>
+                    <h3>{error} {state.currentDate}</h3>
                     </div>}
 
                     {loader && <div className="loader">
@@ -98,9 +88,9 @@ export default function ReconDetails() {
                     {!loader && allReconDetails &&allReconDetails!='' && allReconDetails.length && <div><div className="recon-details">
                        
                     </div><div className="recon-details-table"><br />
-                            <h2>ReconDetails</h2>
+                            <h2>Accounting Details</h2>
                             <div className="result">
-                                Result: <strong>{allReconDetails.length}</strong> ReconDetails
+                                Result: <strong>{allReconDetails.length}</strong> Reports
                             </div>
                             <div className="table-rs">
                             <ReactTable
@@ -120,61 +110,21 @@ export default function ReconDetails() {
         </div>
     )
   }
-  async function onStartDateChange(value,state){
-    state.setStartDate(value)
+  async function oncurrentDateChange(value,state){
+    state.setcurrentDate(value)
     state.setError('')
-    if(state.endDate != ''){
-        let endDate = new Date(state.endDate)
-        let startDate = new Date(value)
-        if(startDate>endDate){
-            state.setErro('StartDate should always be less than endDate.')
-        }else{
-            state.setFormError('')
-        }
+    state.setLoader(true)
+    const currentDate = getDateFormat(value)
+    const result = await GetReconDetails({startDate:currentDate, endDate:currentDate})
+    state.setLoader(false)
+    if(result.ReconDetails){
+        state.setReconDetails(result.ReconDetails)
+        
+    }else{
+        state.setReconDetails([])
+        state.setError('No data found on')
     }
   }
-
-  async function onEndDateChange(value,state){
-    state.setEndDate(value)
-    state.setError('')
-    if(state.startDate != ''){
-        let startDate = new Date(state.startDate)
-        let endDate = new Date(value)
-        if(startDate>endDate){
-            state.setFormError('StartDate should always be less than endDate.')
-        }else{
-            state.setFormError('')
-        }
-    }
-}
-
-async function onSubmit(state){
-    if(state.startDate === '' && state.endDate === ''){
-        state.setFormError('Select Start Date and End Date to get report')
-    }
-    else if(state.startDate === '' ){
-        state.setFormError('Select Start Date to get report')
-    } else if(state.endDate === '' ){
-        state.setFormError('Select End Date to get report')
-    }else if(new Date(state.startDate) > new Date(state.endDate) ){
-        state.setFormError('StartDate should always be less than endDate.')
-    }
-    else{
-        state.setFormError('')
-        state.setLoader(true)
-        const result = await GetReconDetails({startDate:getDateFormat(state.startDate), endDate:getDateFormat(state.endDate)})
-        state.setLoader(false)
-        if(result.ReconDetails){
-        
-            state.setReconDetails(result.ReconDetails)
-            
-        }else{
-            state.setReconDetails([])
-            state.setError('No data found between')
-        }
-
-    }
-}
 
 function getCookie(cname,cookies) {
     let name = cname + "=";
