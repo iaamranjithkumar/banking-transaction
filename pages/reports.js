@@ -61,7 +61,7 @@ export default function Reports({transactions, error}) {
                     <div className='navbar__title'>Reconciliation Module</div>
                     <div className={selectedMenu === 'transaction'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('transaction')}}>Reporting System</div>
                     <div className={selectedMenu === 'recon'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('recon')}}>Accounting System</div>
-                    <div className={selectedMenu === 'run-match'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('run-match')}}>Run Match</div>
+                    <div className={selectedMenu === 'run-match'?'navbar__item active':'navbar__item'} onClick={()=>{setMenu('run-match')}}>Reconciliation</div>
                     <div className='navbar__item' onClick={Logout}>Logout</div>        
                 </header>
                 </div>
