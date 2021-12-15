@@ -30,6 +30,7 @@ input[type="date"] {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 
 }
 .transaction-data p{
@@ -37,7 +38,7 @@ input[type="date"] {
   margin-bottom: 5px;
 }
 
-.transaction-data .transaction-summary p{
+.transaction-summary p{
   color:#f5c81f;
   font-size: 20px;
 }

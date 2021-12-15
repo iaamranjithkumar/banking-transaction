@@ -31,7 +31,7 @@ ReconDetails.getInitialProps = async (ctx) => {
 }
 
 async function GetReconDetails(body){
-        const res = await fetch('https://money-transfer-2021.vercel.app/'+'/api/recon',{
+        const res = await fetch('https://money-transfer-2021.vercel.app'+'/api/recon',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{

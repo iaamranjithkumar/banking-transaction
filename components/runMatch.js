@@ -31,7 +31,7 @@ RunMatch.getInitialProps = async (ctx) => {
 }
 
 async function GetReconDetails(body){
-        const res = await fetch('https://money-transfer-2021.vercel.app/'+'/api/recon',{
+        const res = await fetch('https://money-transfer-2021.vercel.app'+'/api/recon',{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{
@@ -59,9 +59,10 @@ export default function RunMatch() {
     const [loader,setLoader] = useState(false)
     const columns = []
    const state = {setMatchDetails,setcurrentDate,setError,setLoader,setAllMatches,setMatchFilter, allMatchDetails, currentDate}
-    if(allMatchDetails && allMatchDetails.length)
+   const notInclude= ["code","message","seqno","ref","csv","detailedReport","operations","status"]
+    if(allMatchDetails && allMatchDetails.detailedReport && allMatchDetails.detailedReport.length)
      {
-       Object.keys(allMatchDetails[0]).forEach((x,i)=>{
+       Object.keys(allMatchDetails.detailedReport[0]).forEach((x,i)=>{
       columns.push({
         Header: x,
         accessor: x
@@ -87,8 +88,30 @@ export default function RunMatch() {
                     {loader && <div className="loader">
                         <Image src={loaderImage} alt="loading...." width="100" height="100"></Image>
                         </div>}
-                    {!loader && allMatchDetails &&allMatchDetails!='' && allMatchDetails.length && <div><div className="recon-details">
-                       
+                    {!loader && allMatchDetails &&allMatchDetails!='' && allMatchDetails.detailedReport&&allMatchDetails.detailedReport.length && <div><div className="recon-details">
+                    <div className = "transaction-summary">
+                    <p>Transactions Summary - {currentDate}</p>
+                        <div className="transaction-container">
+                            <div className={`total`}>
+                                <span className="total-key"><h4>{`Key`}</h4></span> <span className="total-count"><h4>{`Total Count`}</h4></span> <span className="total-rand"><h4>{`Total Rand Value`}</h4></span>  <span className="total-usd"><h4>{`Total USD Value`}</h4></span>
+                            </div>
+                            {allMatchDetails && Object.keys(allMatchDetails).map(x => {
+                                if (!notInclude.includes(x)) {
+                                    if (x === 'hashtotal') {
+                                        return (<div key={x} className={`total`}>
+                                            <span className="totalKey">{x}</span> <span className="total-count">{allMatchDetails[x].total_records}</span>  <span className="total-rand">{allMatchDetails[x].hashtotal_rand_value}</span>  <span className="total-usd">{allMatchDetails[x].hashtotal_usd_value}</span>
+                                        </div>);
+                                    }
+                                    else {
+                                        return (<div key={x} className={`total`}>
+                                            <span className="totalKey">{x}</span> <span className="total-count">{allMatchDetails[x].total}</span>  <span className="total-rand">{allMatchDetails[x].total_rand_value}</span>  <span className="total-usd">{allMatchDetails[x].total_usd_value}</span>
+                                        </div>
+                                        );
+                                    }
+                                }
+                            })}
+                        </div>
+                        </div>   
                     </div><div className="recon-details-table"><br />
                             <h2>Accounting Details</h2>
                             <div className="result">
@@ -139,55 +162,58 @@ export default function RunMatch() {
           }
         }
       }
-      const result = await GetReconDetails({startDate:currentDate, endDate:currentDate})
+     // const result = await GetReconDetails({startDate:currentDate, endDate:currentDate})
       const transactionDetails = await GetTransactionDetails(body)
       
-      if(result.ReconDetails){
+      //if(result.ReconDetails){
         if(transactionDetails.transactions && transactionDetails.transactions.detailedReport && transactionDetails.transactions.detailedReport.length){
-            let report = transactionDetails.transactions.detailedReport;
-            const columns=[]
-            Object.keys(result.ReconDetails[0]).forEach((x)=>{
-                columns.push(x)
-              })
-              result.ReconDetails.forEach(data=>{
-                  let match = report.find(x=>x.RemittanceId === data.RemittanceId)
-                  if(match){
-                    let mat = 'YES';
-                    columns.forEach(col=>{
-                        if(match[col]!=data[col]){
-                            mat='NO'
-                        }
-                    })
-                    data.Match = mat
-                  }
-                  else{
-                      data.Match = 'NO'
-                  }
-              })
-              state.setMatchDetails(result.ReconDetails)
-              state.setAllMatches(result.ReconDetails)
+            // let report = transactionDetails.transactions.detailedReport;
+            // const columns=[]
+            // Object.keys(result.ReconDetails[0]).forEach((x)=>{
+            //     columns.push(x)
+            //   })
+            //   result.ReconDetails.forEach(data=>{
+            //       let match = report.find(x=>x.RemittanceId === data.RemittanceId)
+            //       if(match){
+            //         let mat = 'YES';
+            //         columns.forEach(col=>{
+            //             if(match[col]!=data[col]){
+            //                 mat='NO'
+            //             }
+            //         })
+            //         data.Match = mat
+            //       }
+            //       else{
+            //           data.Match = 'NO'
+            //       }
+            //   })
+              state.setMatchDetails(transactionDetails.transactions.detailedReport)
+              state.setAllMatches(transactionDetails.transactions)
               state.setError('')
         }
         else{
-            result.ReconDetails.forEach(data=>{
-             data.Match = 'NO'
-            })
-            state.setMatchDetails(result.ReconDetails)
-            state.setAllMatches(result.ReconDetails)
-            state.setError('')
+          // result.ReconDetails.forEach(data=>{
+          //   data.Match = 'NO'
+          //  })
+          //  state.setMatchDetails(result.ReconDetails)
+          //  state.setAllMatches(result.ReconDetails)
+          //  state.setError('')
+            state.setMatchDetails(null)
+            state.setAllMatches(null)
+            state.setError('No Data found from Accounting System')
         }
-      }else{
-        state.setMatchDetails(null)
-        state.setAllMatches(null)
-        state.setError('No Data found from Accounting System')
-      }
+      // }else{
+      //   state.setMatchDetails(null)
+      //   state.setAllMatches(null)
+      //   state.setError('No Data found from Accounting System')
+      // }
       state.setMatchFilter('ALL')
       state.setLoader(false)
     
   }
 
   async function GetTransactionDetails(body){
-    const res = await fetch('https://money-transfer-2021.vercel.app/'+'/api/transaction',{
+    const res = await fetch('https://money-transfer-2021.vercel.app'+'/api/transaction',{
         method: 'POST',
         body: JSON.stringify(body),
         headers:{
@@ -238,9 +264,9 @@ function getCookie(cname,cookies) {
   function onMatchChange(value, state){
     state.setMatchFilter(value)
     if(value === 'ALL'){
-        state.setMatchDetails(state.allMatchDetails)
+        state.setMatchDetails(state.allMatchDetails.detailedReport)
     }else{
-        state.setMatchDetails(state.allMatchDetails.filter(x=>x.Match ==value))
+        state.setMatchDetails(state.allMatchDetails.detailedReport.filter(x=>x.Reconciled ==value))
     }
     
 }
