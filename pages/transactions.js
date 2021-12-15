@@ -96,7 +96,7 @@ export default function Transactions({transactions, error}) {
         <div className="transaction">
             <div className="transaction-data">
                 <p>Select Date</p>
-                    <input type="date" value={currentDate} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
+                    <input type="date" value={currentDate} max={today} onChange={(e)=>{onDateChange(e.target.value,state)}}></input>
                     {!loader && <div className = "transaction-details">
                     <div className = "transaction-summary">
                     <p>Transactions Summary - {currentDate}</p>

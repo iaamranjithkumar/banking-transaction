@@ -51,6 +51,7 @@ async function GetReconDetails(body){
         return {ReconDetails: data.data }
       }
 export default function RunMatch() {
+  var today=new Date().toISOString().split("T")[0];
     const [currentDate, setcurrentDate] = useState('');
     const [matchDetails,setMatchDetails] = useState('')
     const [allMatchDetails, setAllMatches] = useState('')
@@ -76,7 +77,7 @@ export default function RunMatch() {
                     <div>
                         <div className="recon-inputs-checkbox">
                             <label>Select Date</label>
-                            <input type="date" value={currentDate} onChange={(e)=>{oncurrentDateChange(e.target.value,state)}}></input>
+                            <input type="date" value={currentDate} max={today} onChange={(e)=>{oncurrentDateChange(e.target.value,state)}}></input>
                         </div>
                     </div>
                     </div>

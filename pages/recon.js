@@ -57,6 +57,7 @@ export default function ReconDetails() {
     const [loader,setLoader] = useState(false)
     const columns = []
    const state = {setReconDetails,setReconDetails,setcurrentDate,setError,setLoader, currentDate}
+   var today=new Date().toISOString().split("T")[0];
     if(allReconDetails && allReconDetails.length)
      {
        Object.keys(allReconDetails[0]).forEach((x,i)=>{
@@ -73,7 +74,7 @@ export default function ReconDetails() {
                     <div>
                         <div className="recon-inputs-checkbox">
                             <label>Select Date</label>
-                            <input type="date" value={currentDate} onChange={(e)=>{oncurrentDateChange(e.target.value,state)}}></input>
+                            <input type="date" value={currentDate} max={today} onChange={(e)=>{oncurrentDateChange(e.target.value,state)}}></input>
                         </div>
                     </div>
                     </div>
