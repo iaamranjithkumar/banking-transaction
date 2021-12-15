@@ -119,7 +119,7 @@ export default function RunMatch() {
                             </div>
                             <div className="filters">
                                 <span>
-                                    <label>Select Match</label>
+                                    <label>Reconciled</label>
                                     <select onChange={(e) => { onMatchChange(e.target.value, state); } }>
                                         <option value="ALL" selected={selectedMatch === "ALL"}>ALL</option>
                                         <option value="YES" selected={selectedMatch === "YES"}>YES</option>
