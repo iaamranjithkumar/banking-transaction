@@ -116,5 +116,6 @@ async function GetTransactionDetails(body){
   function Logout(){
     document.cookie = "sarb_ref_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "sarb_sessid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "sarb_session_test=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href='/'
   }

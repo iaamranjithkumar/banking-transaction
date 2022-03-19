@@ -1,19 +1,28 @@
 import axios from 'axios'
 import * as csvtojson from 'csvtojson'
+import { getCookie } from './Utils'
 
 export default async function handler(req, res) {
   if(req.method === 'POST' && req.url === '/api/recon'){
         try{
+            let liveLoginCredentials = {
+                "login": "SHOP2SHOP",
+                "password": "*SHOP!2!SHOP*uyt54"
+            }
+            let tesLoginCredentials =  {
+                "login": "SHOP2SHOP",
+                "password": "SHOP2SHOP"
+            }
+            let liveUrl = ' https://za.taajpay.net/s2s/getreconfile'
+            let testUrl = 'http://167.114.24.248:96/s2s/getreconfile'
+            let isLiveLogin = getCookie('sarb_session_test',req.headers.cookie)==='false'
             let reqBody = req.body
             let reconData ={
-                "security": {
-                    "login": "SHOP2SHOP",
-                    "password": "SHOP2SHOP"
-                },
+                "security": isLiveLogin ? liveLoginCredentials : tesLoginCredentials,
                 "startdate": reqBody.startDate,
                 "enddate": reqBody.endDate
             }
-            let response = await axios.post('http://167.114.24.248:96/s2s/getreconfile',reconData,{
+            let response = await axios.post( isLiveLogin ? liveUrl : testUrl,reconData,{
                 headers:{
                     'Content-Type': 'application/json'
                 },
